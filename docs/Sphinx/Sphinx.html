@@ -1,0 +1,698 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="jp">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Sphinx &#8212; Kei&#39;s Tech Note  documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Git" href="../Git/Git.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="sphinx">
+<h1>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install Sphinx.</span>
+pip install Sphinx
+
+<span class="c1"># Initialization.</span>
+<span class="c1"># Accepting most of the defaults, but select &#39;YES&#39; for a question about autodoc.</span>
+sphinx-quickstart
+
+<span class="c1"># Check current directory.</span>
+<span class="c1"># Makefile _build _static _templates conf.py index.rst</span>
+ls
+
+<span class="c1"># Make html.</span>
+make html
+
+<span class="c1"># Now you can find the generated html files in ./_build/html (e.g., index.html).</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="toctree">
+<h2>Toctree<a class="headerlink" href="#toctree" title="Permalink to this headline">¶</a></h2>
+<p>Add toctree directive to index.rst as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">toctree</span><span class="p">::</span>
+   <span class="n">doc1</span>
+   <span class="n">doc2</span>
+</pre></div>
+</div>
+<p>Then put doc1.rst and doc2.rst in the directory where the index.rst exists.</p>
+</div>
+<div class="section" id="restructuredtext-syntax">
+<h2>reStructuredText Syntax<a class="headerlink" href="#restructuredtext-syntax" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="reference">
+<h3>Reference<a class="headerlink" href="#reference" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="https://thomas-cokelaer.info/tutorials/sphinx/rest_syntax.html">Sphinx and RST syntax guide (0.9.3)</a></li>
+<li><a class="reference external" href="http://planset-study-sphinx.readthedocs.io/ja/latest/04.html#top">How to write document with Sphinx (reStructuredText) (Japanese)</a></li>
+<li><a class="reference external" href="https://qiita.com/yamionp/items/8f8d52d6b41bf9d4d16d">blockdiag in Sphinx (Japanese)</a></li>
+</ul>
+</div>
+<div class="section" id="section">
+<span id="top"></span><h3>Section<a class="headerlink" href="#section" title="Permalink to this headline">¶</a></h3>
+<p>You can use following symols for seperating sections.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>= - ` : . &#39; &quot; ~ ^ _ * + #
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">=====================</span>
+<span class="n">Level</span> <span class="mi">1</span>
+<span class="o">=====================</span>
+
+<span class="n">Level</span> <span class="mi">2</span>
+<span class="o">========</span>
+
+<span class="n">Level</span> <span class="mi">3</span>
+<span class="o">--------</span>
+
+<span class="n">Level</span> <span class="mi">4</span>
+<span class="o">^^^^^^^^</span>
+
+<span class="n">Level</span> <span class="mi">5</span>
+<span class="o">~~~~~~~</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="emphasis">
+<h3>Emphasis<a class="headerlink" href="#emphasis" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="18%" />
+<col width="27%" />
+<col width="31%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Type</th>
+<th class="head">Usage</th>
+<th class="head">Syntax</th>
+<th class="head">HTML tag</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Emphasis</td>
+<td><em>String</em></td>
+<td>Enclose with *</td>
+<td>&lt;em&gt;</td>
+</tr>
+<tr class="row-odd"><td>Strong emphasis</td>
+<td><strong>String</strong></td>
+<td>Enclose with **</td>
+<td>&lt;strong&gt;</td>
+</tr>
+<tr class="row-even"><td>code</td>
+<td><code class="docutils literal notranslate"><span class="pre">String</span></code></td>
+<td>Enclose with``</td>
+<td>&lt;span class=&quot;pre&quot;&gt;</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="quotation">
+<h3>Quotation<a class="headerlink" href="#quotation" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="line-break">
+<h3>Line break<a class="headerlink" href="#line-break" title="Permalink to this headline">¶</a></h3>
+<p>Put | to keep line break.</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> Line 1
+<span class="o">|</span> Line 2
+<span class="o">|</span> Line 3
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line">Line 1</div>
+<div class="line">Line 2</div>
+<div class="line">Line 3</div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="list">
+<h3>List<a class="headerlink" href="#list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Item</span> <span class="mi">1</span>
+<span class="o">*</span> <span class="n">Item</span> <span class="mi">2</span>
+<span class="o">*</span> <span class="n">Item</span> <span class="mi">3</span>
+
+<span class="o">+</span> <span class="n">Item</span> <span class="mi">1</span>
+<span class="o">+</span> <span class="n">Item</span> <span class="mi">2</span>
+<span class="o">-</span> <span class="n">Item</span> <span class="mi">3</span>
+</pre></div>
+</div>
+<p><strong>Output examples</strong></p>
+<ul class="simple">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ul>
+<ul class="simple">
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+<ul class="simple">
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+</div>
+<div class="section" id="numbered-list">
+<h3>Numbered list<a class="headerlink" href="#numbered-list" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="m">1.</span> Item 1
+<span class="m">2.</span> Item 2
+<span class="m">3.</span> Item 3
+
+<span class="m">#.</span> Item 1
+<span class="m">#.</span> Item 2
+<span class="m">#.</span> Item 3
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Item 3</li>
+</ol>
+</div>
+<div class="section" id="code-block">
+<h3>Code block<a class="headerlink" href="#code-block" title="Permalink to this headline">¶</a></h3>
+<p>Putting :: and an indentresults in a code block.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Normal</span> <span class="n">text</span><span class="p">::</span>
+
+    <span class="n">code</span> <span class="n">block</span>
+
+<span class="n">Normal</span> <span class="n">text</span>
+</pre></div>
+</div>
+<p>Or, you can also use code-block directive.</p>
+<blockquote>
+<div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="k">print</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>You can specify type of syntax highlight in the code-block directive.</p>
+</div>
+<div class="section" id="label-and-refer">
+<h3>Label and refer<a class="headerlink" href="#label-and-refer" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="nt">_label:</span>
+
+<span class="gh">Title</span>
+<span class="gh">^^^^^</span>
+Text
+
+<span class="na">:ref:</span><span class="nv">`label`</span>
+</pre></div>
+</div>
+<div class="section" id="title">
+<span id="label"></span><h4>Title<a class="headerlink" href="#title" title="Permalink to this headline">¶</a></h4>
+<p>Text</p>
+<p>Refer <a class="reference internal" href="#label"><span class="std std-ref">Title</span></a></p>
+</div>
+</div>
+<div class="section" id="label-for-other-document">
+<h3>Label for other document<a class="headerlink" href="#label-for-other-document" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="na">:doc:</span><span class="nv">`profile`</span>
+</pre></div>
+</div>
+<p>This results in a link like <a class="reference internal" href="../Profile/Profile.html"><span class="doc">Prfofile</span></a>.</p>
+</div>
+<div class="section" id="link">
+<h3>Link<a class="headerlink" href="#link" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>* http://sphinx-doc.org/
+* `github &lt;https://github.com&gt;`_
+* Sphinx-users.jp_
+
+.. _Sphinx-users.jp: http://sphinx-users.jp/
+</pre></div>
+</div>
+<ul class="simple">
+<li><a class="reference external" href="http://sphinx-doc.org/">http://sphinx-doc.org/</a></li>
+<li><a class="reference external" href="https://github.com">github</a></li>
+<li><a class="reference external" href="http://sphinx-users.jp/">Sphinx-users.jp</a></li>
+</ul>
+</div>
+<div class="section" id="download-link">
+<h3>Download link<a class="headerlink" href="#download-link" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:download:`This file &lt;sphinx.rst&gt;`
+</pre></div>
+</div>
+<p>This results in <a class="reference download internal" href="../_downloads/sphinx.rst" download=""><code class="xref download docutils literal notranslate"><span class="pre">This</span> <span class="pre">file</span></code></a>.</p>
+</div>
+<div class="section" id="image">
+<h3>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">image</span><span class="p">::</span> ./../_static/sphinx.png
+    <span class="nc">:scale:</span> <span class="nf">70%</span>
+</pre></div>
+</div>
+<a class="reference internal image-reference" href="../_images/sphinx.png"><img alt="../_images/sphinx.png" src="../_images/sphinx.png" style="width: 156.79999999999998px; height: 156.79999999999998px;" /></a>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">figure</span><span class="p">::</span> ./../_static/sphinx.png
+    <span class="nc">:scale:</span> <span class="nf">70%</span>
+
+    This is caption.
+</pre></div>
+</div>
+<div class="figure" id="id1">
+<a class="reference internal image-reference" href="../_images/sphinx.png"><img alt="../_images/sphinx.png" src="../_images/sphinx.png" style="width: 156.79999999999998px; height: 156.79999999999998px;" /></a>
+<p class="caption"><span class="caption-text">This is caption.</span></p>
+</div>
+</div>
+<div class="section" id="table">
+<h3>Table<a class="headerlink" href="#table" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="table-1">
+<h4>Table 1<a class="headerlink" href="#table-1" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>======= ====== ======
+col1    col2   col3
+======= ====== ======
+row1    a      b
+row2    a      b
+row3    a      b
+======= ====== ======
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="32%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">col1</th>
+<th class="head">col2</th>
+<th class="head">col3</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>row1</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr class="row-odd"><td>row2</td>
+<td>a</td>
+<td>b</td>
+</tr>
+<tr class="row-even"><td>row3</td>
+<td>a</td>
+<td>b</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="table-2">
+<h4>Table 2<a class="headerlink" href="#table-2" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span>+------------------------+------------+----------+----------+
+<span class="o">|</span> Header row, column 1   | Header 2   | Header 3 | Header 4 |
+<span class="o">|</span> (header rows optional) |            |          |          |
++========================+============+==========+==========+
+<span class="o">|</span> body row 1, column 1   | column 2   | column 3 | column 4 |
++------------------------+------------+----------+----------+
+<span class="o">|</span> body row 2             | ...        | ...      |          |
++------------------------+------------+----------+----------+
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="43%" />
+<col width="21%" />
+<col width="18%" />
+<col width="18%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header row, column 1
+(header rows optional)</th>
+<th class="head">Header 2</th>
+<th class="head">Header 3</th>
+<th class="head">Header 4</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>body row 1, column 1</td>
+<td>column 2</td>
+<td>column 3</td>
+<td>column 4</td>
+</tr>
+<tr class="row-odd"><td>body row 2</td>
+<td>...</td>
+<td>...</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="csv-table">
+<h3>csv-table<a class="headerlink" href="#csv-table" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">csv-table</span><span class="p">::</span> Frozen Delights!
+    <span class="nc">:header:</span> <span class="nf">&quot;Treat&quot;, &quot;Quantity&quot;, &quot;Description&quot;</span>
+    <span class="nc">:widths:</span> <span class="nf">15, 10, 30</span>
+
+    &quot;Albatross&quot;, 2.99, &quot;On a stick!&quot;
+    &quot;Crunchy Frog&quot;, 1.49, &quot;If we took the bones out, it wouldn&#39;t be
+    crunchy, now would it?&quot;
+    &quot;Gannet Ripple&quot;, 1.99, &quot;On a stick!&quot;
+</pre></div>
+</div>
+<table border="1" class="colwidths-given docutils" id="id2">
+<caption><span class="caption-text">Frozen Delights!</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Treat</th>
+<th class="head">Quantity</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Albatross</td>
+<td>2.99</td>
+<td>On a stick!</td>
+</tr>
+<tr class="row-odd"><td>Crunchy Frog</td>
+<td>1.49</td>
+<td>If we took the bones out, it wouldn't be
+crunchy, now would it?</td>
+</tr>
+<tr class="row-even"><td>Gannet Ripple</td>
+<td>1.99</td>
+<td>On a stick!</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="list-table">
+<h3>list-table<a class="headerlink" href="#list-table" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">list-table</span><span class="p">::</span> Frozen Delights!
+    <span class="nc">:widths:</span> <span class="nf">15 10 30</span>
+    <span class="nc">:header-rows:</span> <span class="nf">1</span>
+
+    <span class="m">*</span> - Treat
+        <span class="m">-</span> Quantity
+        <span class="m">-</span> Description
+    <span class="m">*</span> - Albatross
+        <span class="m">-</span> 2.99
+        <span class="m">-</span> On a stick!
+    <span class="m">*</span> - Crunchy Frog
+        <span class="m">-</span> 1.49
+        <span class="m">-</span> If we took the bones out, it wouldn&#39;t be
+        crunchy, now would it?
+    <span class="m">*</span> - Gannet Ripple
+        <span class="m">-</span> 1.99
+        <span class="m">-</span> On a stick!
+</pre></div>
+</div>
+<table border="1" class="colwidths-given docutils" id="id3">
+<caption><span class="caption-text">Frozen Delights!</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="27%" />
+<col width="18%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Treat</th>
+<th class="head">Quantity</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Albatross</td>
+<td>2.99</td>
+<td>On a stick!</td>
+</tr>
+<tr class="row-odd"><td>Crunchy Frog</td>
+<td>1.49</td>
+<td>If we took the bones out, it wouldn't be
+crunchy, now would it?</td>
+</tr>
+<tr class="row-even"><td>Gannet Ripple</td>
+<td>1.99</td>
+<td>On a stick!</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="comment">
+<h3>Comment<a class="headerlink" href="#comment" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">note</span><span class="p">::</span>
+
+    This is note!
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is note!</p>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">warning</span><span class="p">::</span>
+
+    This is warning!
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This is warning!</p>
+</div>
+</div>
+<div class="section" id="flowchart">
+<h3>Flowchart<a class="headerlink" href="#flowchart" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install packages</span>
+pip install sphinxcontrib-actdiag sphinxcontrib-blockdiag sphinxcontrib-nwdiag sphinxcontrib-seqdiag
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># conf.py</span>
+<span class="c1"># Add followings.</span>
+
+<span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;sphinxcontrib.blockdiag&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinxcontrib.seqdiag&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinxcontrib.actdiag&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinxcontrib.nwdiag&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinxcontrib.rackdiag&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;sphinxcontrib.packetdiag&#39;</span><span class="p">,</span>
+<span class="p">]</span>
+
+<span class="n">blockdiag_html_image_format</span> <span class="o">=</span> <span class="s1">&#39;SVG&#39;</span>
+<span class="n">seqdiag_html_image_format</span> <span class="o">=</span> <span class="s1">&#39;SVG&#39;</span>
+<span class="n">actdiag_html_image_format</span> <span class="o">=</span> <span class="s1">&#39;SVG&#39;</span>
+<span class="n">nwdiag_html_image_format</span> <span class="o">=</span> <span class="s1">&#39;SVG&#39;</span>
+<span class="n">rackiag_html_image_format</span> <span class="o">=</span> <span class="s1">&#39;SVG&#39;</span>
+<span class="n">packetdiag_html_image_format</span> <span class="o">=</span> <span class="s1">&#39;SVG&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">blockdiag</span><span class="p">::</span>
+
+    blockdiag {
+    A -&gt; B -&gt; C;
+    A -&gt; E -&gt; F;
+    }
+</pre></div>
+</div>
+<div><svg height="200" viewBox="0 0 640 200" width="640" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="126" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="128.0" y="66">A</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="320.0" y="66">B</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="320.0" y="146">E</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="512.0" y="66">C</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="6" x="512.0" y="146">F</text>
+  <path d="M 192 60 L 248 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,60 248,56 248,64 255,60" stroke="rgb(0,0,0)" />
+  <path d="M 192 60 L 224 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 224 60 L 224 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 224 140 L 248 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,140 248,136 248,144 255,140" stroke="rgb(0,0,0)" />
+  <path d="M 384 60 L 440 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,60 440,56 440,64 447,60" stroke="rgb(0,0,0)" />
+  <path d="M 384 140 L 440 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,140 440,136 440,144 447,140" stroke="rgb(0,0,0)" />
+</svg>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">seqdiag</span><span class="p">::</span>
+
+    seqdiag {
+        browser  -&gt; webserver [label = &quot;GET /index.html&quot;];
+        browser &lt;-- webserver;
+        browser  -&gt; webserver [label = &quot;POST /blog/comment&quot;];
+                    webserver  -&gt; database [label = &quot;INSERT comment&quot;];
+                    webserver &lt;-- database;
+        browser &lt;-- webserver;
+    }
+</pre></div>
+</div>
+<div><svg height="489" viewBox="0 0 640 489" width="640" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,0,0)" height="326" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="127" y="141" />
+  <rect fill="rgb(0,0,0)" height="50" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="319" y="141" />
+  <rect fill="rgb(0,0,0)" height="165" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="319" y="256" />
+  <rect fill="rgb(0,0,0)" height="50" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="321" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <path d="M 128 80 L 128 477" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="326" stroke="rgb(0,0,0)" width="8" x="124" y="135" />
+  <path d="M 320 80 L 320 477" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="50" stroke="rgb(0,0,0)" width="8" x="316" y="135" />
+  <rect fill="moccasin" height="165" stroke="rgb(0,0,0)" width="8" x="316" y="250" />
+  <path d="M 512 80 L 512 477" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="50" stroke="rgb(0,0,0)" width="8" x="508" y="315" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="42" x="128.0" y="66">browser</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="54" x="320.0" y="66">webserver</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="48" x="512.0" y="66">database</text>
+  <path d="M 136 135 L 312 135" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="304,131 312,135 304,139" stroke="rgb(0,0,0)" />
+  <path d="M 136 185 L 312 185" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="144,181 136,185 144,189" stroke="rgb(0,0,0)" />
+  <path d="M 136 250 L 312 250" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="304,246 312,250 304,254" stroke="rgb(0,0,0)" />
+  <path d="M 328 315 L 504 315" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="496,311 504,315 496,319" stroke="rgb(0,0,0)" />
+  <path d="M 328 365 L 504 365" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="336,361 328,365 336,369" stroke="rgb(0,0,0)" />
+  <path d="M 136 415 L 312 415" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="4" />
+  <polygon fill="rgb(0,0,0)" points="144,411 136,415 144,419" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="90" x="185.0" y="133">GET /index.html</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="108" x="194.0" y="248">POST /blog/comment</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="84" x="374.0" y="313">INSERT comment</text>
+</svg>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Sphinx</a><ul>
+<li><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li><a class="reference internal" href="#toctree">Toctree</a></li>
+<li><a class="reference internal" href="#restructuredtext-syntax">reStructuredText Syntax</a><ul>
+<li><a class="reference internal" href="#reference">Reference</a></li>
+<li><a class="reference internal" href="#section">Section</a></li>
+<li><a class="reference internal" href="#emphasis">Emphasis</a></li>
+<li><a class="reference internal" href="#quotation">Quotation</a></li>
+<li><a class="reference internal" href="#line-break">Line break</a></li>
+<li><a class="reference internal" href="#list">List</a></li>
+<li><a class="reference internal" href="#numbered-list">Numbered list</a></li>
+<li><a class="reference internal" href="#code-block">Code block</a></li>
+<li><a class="reference internal" href="#label-and-refer">Label and refer</a><ul>
+<li><a class="reference internal" href="#title">Title</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#label-for-other-document">Label for other document</a></li>
+<li><a class="reference internal" href="#link">Link</a></li>
+<li><a class="reference internal" href="#download-link">Download link</a></li>
+<li><a class="reference internal" href="#image">Image</a></li>
+<li><a class="reference internal" href="#table">Table</a><ul>
+<li><a class="reference internal" href="#table-1">Table 1</a></li>
+<li><a class="reference internal" href="#table-2">Table 2</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#csv-table">csv-table</a></li>
+<li><a class="reference internal" href="#list-table">list-table</a></li>
+<li><a class="reference internal" href="#comment">Comment</a></li>
+<li><a class="reference internal" href="#flowchart">Flowchart</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../Git/Git.html" title="previous chapter">Git</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Sphinx/Sphinx.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, kei3238.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/Sphinx/Sphinx.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
