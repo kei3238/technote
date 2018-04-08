@@ -81,7 +81,7 @@ Hello worldだけを表示する
     :scale: 50%
 
 
-関数化
+関数化 (App.js)
 ========================================
 
 .. code-block:: jsx
@@ -107,7 +107,7 @@ Hello worldだけを表示する
   export default App;
 
 
-変数の受け渡し
+変数の受け渡し (App.js)
 ========================================
 
 .. code-block:: jsx
