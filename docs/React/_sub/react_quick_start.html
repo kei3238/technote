@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>React Quick Start &mdash; Kei&#39;s Tech Note  documentation</title>
+  <title>Quick Start &mdash; Kei&#39;s Tech Note  documentation</title>
   
 
   
@@ -30,7 +30,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Reactによる時計アプリ作成" href="react_clock.html" />
-    <link rel="prev" title="Reactとは" href="about_react.html" /> 
+    <link rel="prev" title="Reactについて" href="about_react.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -83,8 +83,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Profile/Profile.html">Prfofile</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../Python/Python.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../React.html">React</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="about_react.html">Reactとは</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">React Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about_react.html">Reactについて</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Quick Start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#node">Nodeのインストール</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-react-app">create-react-appでプロジェクト作成</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="react_clock.html">Reactによる時計アプリ作成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_redux_clock.html">React-Reduxによる時計アプリ作成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_redux_router.html">Reactにおけるページ遷移</a></li>
@@ -141,7 +145,7 @@
         
           <li><a href="../React.html">React</a> &raquo;</li>
         
-      <li>React Quick Start</li>
+      <li>Quick Start</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -160,8 +164,63 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="react-quick-start">
-<h1>React Quick Start<a class="headerlink" href="#react-quick-start" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="quick-start">
+<h1>Quick Start<a class="headerlink" href="#quick-start" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="node">
+<h2>Nodeのインストール<a class="headerlink" href="#node" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><a class="reference external" href="https://nodejs.org/ja/">node.jsからダウンロード</a></li>
+<li>ターミナルでバージョンを確認できればOK</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ node -v
+v9.7.1
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>npmのバージョンも確認</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm -v
+<span class="m">5</span>.6.0
+</pre></div>
+</div>
+</div>
+<div class="section" id="create-react-app">
+<h2>create-react-appでプロジェクト作成<a class="headerlink" href="#create-react-app" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>npmでcreate-react-appをインストール</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install -g create-react-app
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>create-react-appを実行</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>create-react-app sample-app
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>sample-app内に以下のようなファイル&amp;ディレクトリが作成される</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+├── README.md
+├── node_modules
+├── package-lock.json
+├── package.json
+├── public
+└── src
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>sample-appディレクトリに移動してnpm start</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> sample-app
+npm start
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><a class="reference external" href="http://localhost:3000">http://localhost:3000</a> でsample-appが実行される(自動でブラウザが開く)</li>
+</ol>
+</div>
 </div>
 
 
@@ -175,7 +234,7 @@
         <a href="react_clock.html" class="btn btn-neutral float-right" title="Reactによる時計アプリ作成" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="about_react.html" class="btn btn-neutral" title="Reactとは" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="about_react.html" class="btn btn-neutral" title="Reactについて" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -161,35 +161,22 @@ Code block
 ----------
 Putting \:\: and an indentresults in a code block.
 
-.. code-block:: rst
+::
 
-    ::
+    Normal text::
 
         code block
 
     Normal text
 
 
-::
-
-    code block
-
-Normal text
-
-
 Or, you can also use code-block directive.
-
-.. code-block:: rst
 
     .. code-block:: python
 
         import sys
+
         print sys.path
-
-.. code-block:: python
-
-    import sys
-    print sys.path
 
 You can specify type of syntax highlight in the code-block directive.
 
