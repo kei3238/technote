@@ -84,13 +84,20 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Python/Python.html">Python</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../React.html">React</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Reactについて</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Reactとは</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Reactの特徴</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Reactとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Reactの特徴</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#dom-document-object-model">1. 仮想DOM(Document Object Model)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jsx">2. JSX</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Reactを使うメリット</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#angular">Angularとの差分</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="react_quick_start.html">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_simple_sample.html">簡単な例で学ぶReact</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_clock.html">Reactによる時計アプリ作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about_redux.html">Redux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_redux_clock.html">React-Reduxによる時計アプリ作成</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_redux_router.html">Reactにおけるページ遷移</a></li>
 <li class="toctree-l2"><a class="reference internal" href="material_ui.html">Material UIで見た目を綺麗にする</a></li>
@@ -167,18 +174,38 @@
             
   <div class="section" id="react">
 <h1>Reactについて<a class="headerlink" href="#react" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>Reactとは<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2><a class="reference external" href="https://reactjs.org">Reactとは</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Facebookが開発・公開しているUIライブラリ</li>
+<li>Facebookが開発・公開しているUIライブラリ.</li>
+<li>JavaScriptで構築されている.</li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h2>Reactの特徴<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h2>Reactの特徴<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="dom-document-object-model">
+<h3>1. 仮想DOM(Document Object Model)<a class="headerlink" href="#dom-document-object-model" title="Permalink to this headline">¶</a></h3>
+<p>リンクを踏んでページ遷移するのではなく、ページの構成要素を要素の中で
+影響のあるところだけを再リレンダリング(描画)することで、動的にページを変更できる.
+Facebookのいいねボタン(いいねするとボタン周辺だけが変化する)を想像するとイメージしやすい.</p>
+</div>
+<div class="section" id="jsx">
+<h3>2. JSX<a class="headerlink" href="#jsx" title="Permalink to this headline">¶</a></h3>
+<p>JavaScriptを拡張した言語であるJSXを用いることにより、
+処理(JavaScript)とページ構成(html)をシンプルに記述することができる.
+JavaScriptのみでも記述は可能だが、可読性面からJSXの利用が推奨されている.</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>Reactを使うメリット<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>仮想DOM</li>
-<li>JSX</li>
+<li>サクサク動くページを作れる.</li>
+<li>保守がしやすい.</li>
+<li>ReactNativeでスマホアプリも作れる.</li>
 </ul>
+</div>
+<div class="section" id="angular">
+<h2>Angularとの差分<a class="headerlink" href="#angular" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
