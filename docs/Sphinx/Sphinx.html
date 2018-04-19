@@ -113,6 +113,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#list-table">list-table</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#comment">Comment</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#flowchart">Flowchart</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mathematical-notation">Mathematical notation</a></li>
 </ul>
 </li>
 </ul>
@@ -761,6 +762,26 @@ pip install sphinxcontrib-actdiag sphinxcontrib-blockdiag sphinxcontrib-nwdiag s
 </svg>
 </div>
 </div>
+<div class="section" id="mathematical-notation">
+<h3>Mathematical notation<a class="headerlink" href="#mathematical-notation" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span># conf.py
+# Add followings.
+
+extensions = [
+    &#39;sphinx.ext.mathjax&#39;,
+]
+</pre></div>
+</div>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">math</span><span class="p">::</span>
+
+    X_k = \sum_{n=0}^{2N-1} x_n \cos \left[\frac{\pi}{N}
+          \left(n+\frac{1}{2}+\frac{N}{2}\right) \left(k+\frac{1}{2}\right) \right]
+</pre></div>
+</div>
+<div class="math notranslate">
+\[X_k = \sum_{n=0}^{2N-1} x_n \cos \left[\frac{\pi}{N}
+      \left(n+\frac{1}{2}+\frac{N}{2}\right) \left(k+\frac{1}{2}\right) \right]\]</div>
+</div>
 </div>
 </div>
 
@@ -815,6 +836,7 @@ pip install sphinxcontrib-actdiag sphinxcontrib-blockdiag sphinxcontrib-nwdiag s
       <script type="text/javascript" src="../_static/jquery.js"></script>
       <script type="text/javascript" src="../_static/underscore.js"></script>
       <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -494,3 +494,28 @@ Flowchart
                     webserver <-- database;
         browser <-- webserver;
     }
+
+
+Mathematical notation
+---------------------
+
+.. code-block:: rst
+
+    # conf.py
+    # Add followings.
+
+    extensions = [
+        'sphinx.ext.mathjax',
+    ]
+
+.. code-block:: rst
+
+    .. math::
+
+        X_k = \sum_{n=0}^{2N-1} x_n \cos \left[\frac{\pi}{N}
+              \left(n+\frac{1}{2}+\frac{N}{2}\right) \left(k+\frac{1}{2}\right) \right]
+
+.. math::
+
+    X_k = \sum_{n=0}^{2N-1} x_n \cos \left[\frac{\pi}{N}
+          \left(n+\frac{1}{2}+\frac{N}{2}\right) \left(k+\frac{1}{2}\right) \right]

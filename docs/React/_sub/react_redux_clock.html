@@ -30,7 +30,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Reactにおけるページ遷移" href="react_redux_router.html" />
-    <link rel="prev" title="Redux" href="about_redux.html" /> 
+    <link rel="prev" title="Reduxについて" href="about_redux.html" /> 
 
   
   <script src="../../_static/js/modernizr.min.js"></script>
@@ -87,8 +87,14 @@
 <li class="toctree-l2"><a class="reference internal" href="react_quick_start.html">Quick Start</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_simple_sample.html">簡単な例で学ぶReact</a></li>
 <li class="toctree-l2"><a class="reference internal" href="react_clock.html">Reactによる時計アプリ作成</a></li>
-<li class="toctree-l2"><a class="reference internal" href="about_redux.html">Redux</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">React-Reduxによる時計アプリ作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="about_redux.html">Reduxについて</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">React-Reduxによる時計アプリ作成</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#js">下記実装におけるjsファイル依存関係</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">下記実装における処理フロー</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">react-reduxによる実装例</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#combinereducerslogger">combineReducersとloggerの導入</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="react_redux_router.html">Reactにおけるページ遷移</a></li>
 <li class="toctree-l2"><a class="reference internal" href="material_ui.html">Material UIで見た目を綺麗にする</a></li>
 </ul>
@@ -164,6 +170,423 @@
             
   <div class="section" id="react-redux">
 <h1>React-Reduxによる時計アプリ作成<a class="headerlink" href="#react-redux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="js">
+<h2>下記実装におけるjsファイル依存関係<a class="headerlink" href="#js" title="Permalink to this headline">¶</a></h2>
+<div><svg height="280" viewBox="0 0 640 280" width="640" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(243,152,0)" height="60" style="filter:url(#filter_blur)" width="144" x="56" y="30" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="126" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="206" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="30" x="128.0" y="66">state</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="60" x="320.0" y="66">reducer.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="320.0" y="146">containers.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="48" x="512.0" y="66">index.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="128.0" y="146">components.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="200" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="54" x="128.0" y="226">action.js</text>
+  <path d="M 384 60 L 440 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,60 440,56 440,64 447,60" stroke="rgb(0,0,0)" />
+  <path d="M 192 140 L 248 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,140 248,136 248,144 255,140" stroke="rgb(0,0,0)" />
+  <path d="M 384 140 L 432 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 432 140 L 432 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 432 60 L 440 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="447,60 440,56 440,64 447,60" stroke="rgb(0,0,0)" />
+  <path d="M 192 220 L 240 220" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 240 220 L 240 140" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 240 140 L 248 140" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="255,140 248,136 248,144 255,140" stroke="rgb(0,0,0)" />
+  <path d="M 192 60 L 256 60" fill="none" stroke="rgb(0,0,0)" />
+  <rect fill="white" height="15" stroke="rgb(0,0,0)" width="52" x="390" y="38" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="36" x="416.0" y="51">export</text>
+  <rect fill="white" height="15" stroke="rgb(0,0,0)" width="52" x="198" y="118" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="36" x="224.0" y="131">export</text>
+  <rect fill="white" height="15" stroke="rgb(0,0,0)" width="52" x="390" y="103" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="36" x="416.0" y="116">export</text>
+  <rect fill="white" height="15" stroke="rgb(0,0,0)" width="52" x="198" y="183" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="36" x="224.0" y="196">export</text>
+</svg>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>下記実装における処理フロー<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div><svg height="642" viewBox="0 0 856 642" width="856" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,0,0)" height="544" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="127" y="86" />
+  <rect fill="rgb(0,0,0)" height="58" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="277" y="161" />
+  <rect fill="rgb(0,0,0)" height="45" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="277" y="549" />
+  <rect fill="rgb(0,0,0)" height="180" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="427" y="324" />
+  <rect fill="rgb(0,0,0)" height="105" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="577" y="369" />
+  <rect fill="rgb(0,0,0)" height="30" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="727" y="414" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="26" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="217" y="26" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="367" y="26" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="517" y="26" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="667" y="26" />
+  <path d="M 128 60 L 128 640" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="544" stroke="rgb(0,0,0)" width="8" x="124" y="80" />
+  <path d="M 278 60 L 278 640" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="58" stroke="rgb(0,0,0)" width="8" x="274" y="155" />
+  <rect fill="moccasin" height="45" stroke="rgb(0,0,0)" width="8" x="274" y="543" />
+  <path d="M 428 60 L 428 640" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="180" stroke="rgb(0,0,0)" width="8" x="424" y="318" />
+  <path d="M 578 60 L 578 640" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="105" stroke="rgb(0,0,0)" width="8" x="574" y="363" />
+  <path d="M 728 60 L 728 640" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="30" stroke="rgb(0,0,0)" width="8" x="724" y="408" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="20" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="48" x="128.0" y="46">index.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="214" y="20" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="60" x="278.0" y="46">reducer.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="364" y="20" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="428.0" y="46">containers.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="514" y="20" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="78" x="578.0" y="46">components.js</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="664" y="20" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="54" x="728.0" y="46">action.js</text>
+  <path d="M 136 155 L 270 155" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="262,151 270,155 262,159" stroke="rgb(0,0,0)" />
+  <path d="M 136 213 L 270 213" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,209 136,213 144,217" stroke="rgb(0,0,0)" />
+  <path d="M 136 318 L 420 318" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="412,314 420,318 412,322" stroke="rgb(0,0,0)" />
+  <path d="M 436 363 L 570 363" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="562,359 570,363 562,367" stroke="rgb(0,0,0)" />
+  <path d="M 586 408 L 720 408" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="712,404 720,408 712,412" stroke="rgb(0,0,0)" />
+  <path d="M 586 438 L 720 438" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="594,434 586,438 594,442" stroke="rgb(0,0,0)" />
+  <path d="M 436 468 L 570 468" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="444,464 436,468 444,472" stroke="rgb(0,0,0)" />
+  <path d="M 136 498 L 420 498" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,494 136,498 144,502" stroke="rgb(0,0,0)" />
+  <path d="M 136 543 L 270 543" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="262,539 270,543 262,547" stroke="rgb(0,0,0)" />
+  <path d="M 136 588 L 270 588" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,584 136,588 144,592" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="66" x="173.0" y="153">createStore</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="120" x="210.0" y="205">Return initial state</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="72" x="176.0" y="316">An operation</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="108" x="494.0" y="361">Call dispatch func</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="90" x="635.0" y="406">Dispath(action)</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="72" x="176.0" y="541">Update state</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="66" x="237.0" y="586">Update view</text>
+  <path d="M 40 97 L 376 97" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 40 101 L 376 101" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 480 97 L 816 97" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 480 101 L 816 101" fill="none" stroke="rgb(0,0,0)" />
+  <rect fill="rgb(208,208,208)" height="19" stroke="rgb(0,0,0)" width="104" x="376" y="90" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="84" x="428.0" y="105">Initialization</text>
+  <path d="M 40 260 L 382 260" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 40 264 L 382 264" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 474 260 L 816 260" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 474 264 L 816 264" fill="none" stroke="rgb(0,0,0)" />
+  <rect fill="rgb(208,208,208)" height="19" stroke="rgb(0,0,0)" width="92" x="382" y="253" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="72" x="428.0" y="268">Update state</text>
+</svg>
+</div>
+</div>
+<div class="section" id="id2">
+<h2>react-reduxによる実装例<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>パッケージのインストール</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save redux react-redux
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>ディレクトリ・ファイル構成を変更</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+├── README.md
+├── node_modules
+├── package-lock.json
+├── package.json
+├── public
+└── src
+      ├── index.js
+      ├── registerServiceWorker.js
+      ├── actions
+      │   └── clock.js
+      ├── reducers
+      │   └── clock.js
+      ├── containers
+      │   └── clockApp.js
+      ├── components
+      │   └── clockApp.js
+      └── utils
+          └── common.js
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>src/utils/common.js を以下のように変更する.</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">export</span> <span class="n">function</span> <span class="n">parseTime</span><span class="p">(</span><span class="n">datetime</span><span class="o">=</span><span class="n">new</span> <span class="n">Date</span><span class="p">()){</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="n">hour</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">getHours</span><span class="p">(),</span>
+    <span class="n">minute</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">getMinutes</span><span class="p">(),</span>
+    <span class="n">second</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">getSeconds</span><span class="p">()</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">function</span> <span class="n">zeroPadding</span><span class="p">(</span><span class="n">number</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span><span class="n">Array</span><span class="p">(</span><span class="n">length</span><span class="p">)</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;0&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">number</span><span class="p">)</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="o">-</span><span class="n">length</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>parseTime(): 関数を呼び出した時刻をオブジェクトで返す.</li>
+<li>zeroPadding(): hour/minute/secondが1桁の場合に10の位を0でうめる.</li>
+</ul>
+<ol class="arabic simple" start="4">
+<li>src/reducers/clock.js を以下のように変更する.</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span><span class="n">parseTime</span><span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;../utils/common&quot;</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">initial</span> <span class="n">state</span>
+<span class="n">const</span> <span class="n">initialState</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">current_time</span><span class="p">:</span> <span class="n">parseTime</span><span class="p">()</span>
+<span class="p">};</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">how</span> <span class="n">reducer</span> <span class="n">updates</span> <span class="n">the</span> <span class="n">state</span><span class="o">.</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">function</span> <span class="n">clockReducer</span><span class="p">(</span><span class="n">state</span> <span class="o">=</span> <span class="n">initialState</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">switch</span> <span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">case</span> <span class="s1">&#39;SYNC_TIME&#39;</span><span class="p">:</span>
+      <span class="k">return</span> <span class="p">{</span>
+        <span class="o">...</span><span class="n">state</span><span class="p">,</span>
+        <span class="n">current_time</span><span class="p">:</span> <span class="n">action</span><span class="o">.</span><span class="n">payload</span><span class="o">.</span><span class="n">current_time</span>
+      <span class="p">};</span>
+    <span class="n">default</span><span class="p">:</span>
+      <span class="k">return</span> <span class="n">state</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>initialState(初期状態)として初期化時点での現在時刻を</li>
+<li>action.typeに基づいてstateを更新するreducerを定義している.</li>
+</ul>
+<ol class="arabic simple" start="5">
+<li>src/components/clockApp.js を以下のように変更する.</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span><span class="o">,</span> <span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;react&quot;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">zeroPadding</span><span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;../utils/common&quot;</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="k">class</span> <span class="nc">Clock</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+
+  <span class="n">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">timer</span> <span class="o">=</span> <span class="n">setInterval</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="o">.</span><span class="n">syncTime</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">componentWillUnmount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">clearInterval</span><span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">timer</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">recieve</span> <span class="n">variables</span> <span class="ow">and</span> <span class="n">functions</span> <span class="n">exported</span> <span class="ow">in</span> <span class="n">containers</span>
+    <span class="n">const</span> <span class="p">{</span>
+      <span class="o">//</span><span class="n">variables</span>
+      <span class="n">current_time</span><span class="p">,</span>
+
+      <span class="o">//</span><span class="n">functions</span>
+    <span class="p">}</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">props</span><span class="p">;</span>
+
+    <span class="n">const</span> <span class="n">hour</span> <span class="o">=</span> <span class="n">zeroPadding</span><span class="p">(</span><span class="n">current_time</span><span class="o">.</span><span class="n">hour</span><span class="p">);</span>
+    <span class="n">const</span> <span class="n">minute</span> <span class="o">=</span> <span class="n">zeroPadding</span><span class="p">(</span><span class="n">current_time</span><span class="o">.</span><span class="n">minute</span><span class="p">);</span>
+    <span class="n">const</span> <span class="n">second</span> <span class="o">=</span> <span class="n">zeroPadding</span><span class="p">(</span><span class="n">current_time</span><span class="o">.</span><span class="n">second</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="n">hour</span><span class="p">}:{</span><span class="n">minute</span><span class="p">}:{</span><span class="n">second</span><span class="p">}</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>stateに基づいて現在時刻を表示するcomponent.</li>
+<li>componentDidMount()で1秒おきに時刻を更新するタイマーを設定.</li>
+<li>componentWillUnmount()でタイマーを解除.</li>
+</ul>
+<ol class="arabic simple" start="6">
+<li>src/actions/clock.js を以下のように変更する.</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span><span class="n">parseTime</span><span class="p">}</span> <span class="kn">from</span> <span class="s2">&quot;../utils/common&quot;</span>
+
+<span class="o">//</span> <span class="n">define</span> <span class="n">actions</span>
+<span class="n">export</span> <span class="n">const</span> <span class="n">syncTime</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">({</span>
+  <span class="nb">type</span><span class="p">:</span> <span class="s1">&#39;SYNC_TIME&#39;</span><span class="p">,</span>
+  <span class="n">payload</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">current_time</span><span class="p">:</span> <span class="n">parseTime</span><span class="p">()</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>typeにアクションの種類、payloadにデータを定義したオブジェクトを返す.</li>
+<li>上の実装ではSYNC_TIMEアクションでcurrent_timeデータ(現在時刻)を返している.</li>
+</ul>
+<ol class="arabic simple" start="7">
+<li>src/containers/clockApp.js を以下のように変更する.</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="p">{</span> <span class="n">connect</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-redux&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">ClockApp</span> <span class="nn">from</span> <span class="s1">&#39;../components/clockApp&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span> <span class="n">syncTime</span> <span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;../actions/clock&#39;</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="k">pass</span> <span class="n">variables</span> <span class="n">defined</span> <span class="ow">in</span> <span class="n">state</span> <span class="n">to</span> <span class="n">component</span> <span class="n">props</span><span class="o">.</span>
+<span class="n">function</span> <span class="n">mapStateToProps</span><span class="p">(</span><span class="n">state</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="n">current_time</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">current_time</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="k">pass</span> <span class="n">dispath</span><span class="p">(</span><span class="n">action</span><span class="p">)</span> <span class="n">to</span> <span class="n">component</span> <span class="n">props</span><span class="o">.</span>
+<span class="n">function</span> <span class="n">mapDispatchToProps</span><span class="p">(</span><span class="n">dispatch</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="n">syncTime</span><span class="p">()</span> <span class="p">{</span>
+      <span class="n">dispatch</span><span class="p">(</span><span class="n">syncTime</span><span class="p">())</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">connect</span><span class="p">(</span><span class="n">mapStateToProps</span><span class="p">,</span> <span class="n">mapDispatchToProps</span><span class="p">)(</span><span class="n">ClockApp</span><span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>stateで管理している変数をpropsに渡してcomponentで利用できるようにしている.</li>
+<li>componentでactionを発行できる関数をcomponentで利用できるようにしている.</li>
+<li>上の実装では、syncTime()をcomponentで呼ぶとdispatch(syncTime())が実行される.</li>
+</ul>
+<ol class="arabic simple" start="8">
+<li>scr/index.js を以下のように変更する.</li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">React</span> <span class="nn">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">ReactDOM</span> <span class="nn">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">createStore</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;redux&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="p">{</span><span class="n">Provider</span><span class="p">}</span> <span class="kn">from</span> <span class="s1">&#39;react-redux&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">clockReducer</span> <span class="nn">from</span> <span class="s1">&#39;./reducers/clock&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">ClockApp</span> <span class="nn">from</span> <span class="s1">&#39;./containers/clockApp&#39;</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">registerServiceWorker</span> <span class="nn">from</span> <span class="s1">&#39;./registerServiceWorker&#39;</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">store</span> <span class="o">=</span> <span class="n">createStore</span><span class="p">(</span><span class="n">clockReducer</span><span class="p">);</span>
+
+<span class="n">ReactDOM</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
+  <span class="o">&lt;</span><span class="n">Provider</span> <span class="n">store</span><span class="o">=</span><span class="p">{</span><span class="n">store</span><span class="p">}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">ClockApp</span> <span class="o">/&gt;</span>
+  <span class="o">&lt;/</span><span class="n">Provider</span><span class="o">&gt;</span><span class="p">,</span>
+  <span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">));</span>
+<span class="n">registerServiceWorker</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combinereducerslogger">
+<h2>combineReducersとloggerの導入<a class="headerlink" href="#combinereducerslogger" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>combineReducersを導入することで、reducerを複数ファイルに分割できるようになる.</li>
+<li>loggerを導入することで、stateの変更履歴をコンソールに出力できるようになる.</li>
+</ul>
+<ol class="arabic simple">
+<li>必要なパッケージをインストール.</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save <span class="nb">history</span>
+npm install --save react-router-redux
+npm install --save redux-logger
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>store/store.jsを作成する.</li>
+</ol>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span>
+  <span class="nx">createStore</span> <span class="nx">as</span> <span class="nx">reduxCreateStore</span><span class="p">,</span>
+  <span class="nx">combineReducers</span><span class="p">,</span>
+  <span class="nx">applyMiddleware</span>
+<span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;redux&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">routerMiddleware</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-router-redux&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">logger</span> <span class="nx">from</span> <span class="s1">&#39;redux-logger&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">clockReducer</span> <span class="nx">from</span> <span class="s1">&#39;../reducers/clock&#39;</span><span class="p">;</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="kd">function</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">history</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">reduxCreateStore</span><span class="p">(</span>
+    <span class="nx">combineReducers</span><span class="p">({</span>
+      <span class="nx">clockReducer</span><span class="p">,</span>
+    <span class="p">}),</span>
+    <span class="nx">applyMiddleware</span><span class="p">(</span>
+      <span class="nx">logger</span><span class="p">,</span>
+      <span class="nx">routerMiddleware</span><span class="p">(</span><span class="nx">history</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>containers/clockApp.jsを以下のように変更する.</li>
+</ol>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="p">{</span> <span class="nx">connect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">ClockApp</span> <span class="nx">from</span> <span class="s1">&#39;../components/clockApp&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span> <span class="nx">syncTime</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;../actions/clock&#39;</span><span class="p">;</span>
+
+<span class="kd">function</span> <span class="nx">mapStateToProps</span><span class="p">(</span><span class="nx">state</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">current_time</span><span class="o">:</span> <span class="nx">state</span><span class="p">.</span><span class="nx">clockReducer</span><span class="p">.</span><span class="nx">current_time</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kd">function</span> <span class="nx">mapDispatchToProps</span><span class="p">(</span><span class="nx">dispatch</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">{</span>
+    <span class="nx">syncTime</span><span class="p">()</span> <span class="p">{</span>
+      <span class="nx">dispatch</span><span class="p">(</span><span class="nx">syncTime</span><span class="p">())</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">connect</span><span class="p">(</span><span class="nx">mapStateToProps</span><span class="p">,</span> <span class="nx">mapDispatchToProps</span><span class="p">)(</span><span class="nx">ClockApp</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>index.jsを以下のように変更する.</li>
+</ol>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">ReactDOM</span> <span class="nx">from</span> <span class="s1">&#39;react-dom&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="p">{</span><span class="nx">Provider</span><span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react-redux&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">ClockApp</span> <span class="nx">from</span> <span class="s1">&#39;./containers/clockApp&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">createBrowserHistory</span> <span class="nx">from</span> <span class="s1">&#39;history/createBrowserHistory&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">createStore</span> <span class="nx">from</span> <span class="s1">&#39;./store/store&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">registerServiceWorker</span> <span class="nx">from</span> <span class="s1">&#39;./registerServiceWorker&#39;</span><span class="p">;</span>
+
+<span class="kr">const</span> <span class="nx">history</span> <span class="o">=</span> <span class="nx">createBrowserHistory</span><span class="p">();</span>
+<span class="kr">const</span> <span class="nx">store</span> <span class="o">=</span> <span class="nx">createStore</span><span class="p">(</span><span class="nx">history</span><span class="p">);</span>
+
+<span class="nx">ReactDOM</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span>
+  <span class="p">&lt;</span><span class="nt">Provider</span> <span class="na">store</span><span class="o">=</span><span class="s">{store}</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ClockApp</span> <span class="p">/&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">Provider</span><span class="p">&gt;,</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">));</span>
+<span class="nx">registerServiceWorker</span><span class="p">();</span>
+</pre></div>
+</div>
+</div>
 </div>
 
 
@@ -177,7 +600,7 @@
         <a href="react_redux_router.html" class="btn btn-neutral float-right" title="Reactにおけるページ遷移" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="about_redux.html" class="btn btn-neutral" title="Redux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="about_redux.html" class="btn btn-neutral" title="Reduxについて" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -219,6 +642,7 @@
       <script type="text/javascript" src="../../_static/jquery.js"></script>
       <script type="text/javascript" src="../../_static/underscore.js"></script>
       <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
   
 

@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="jp" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="jp" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reduxについて &mdash; Kei&#39;s Tech Note  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="React-Reduxによる時計アプリ作成" href="react_redux_clock.html" />
+    <link rel="prev" title="Reactによる時計アプリ作成" href="react_clock.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Kei's Tech Note
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Profile/Profile.html">Prfofile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Python/Python.html">Python</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../React.html">React</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="about_react.html">Reactについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_quick_start.html">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_simple_sample.html">簡単な例で学ぶReact</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_clock.html">Reactによる時計アプリ作成</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Reduxについて</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Reduxとは</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Reduxの特徴</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="react_redux_clock.html">React-Reduxによる時計アプリ作成</a></li>
+<li class="toctree-l2"><a class="reference internal" href="react_redux_router.html">Reactにおけるページ遷移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="material_ui.html">Material UIで見た目を綺麗にする</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vim/Vim.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/Git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Sphinx/Sphinx.html">Sphinx</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kei's Tech Note</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../React.html">React</a> &raquo;</li>
+        
+      <li>Reduxについて</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/React/_sub/about_redux.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="redux">
+<h1>Reduxについて<a class="headerlink" href="#redux" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>Reduxとは<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fluxというアーキテクチャの一種. Fluxでは、<ol class="arabic">
+<li>ユーザの入力からActionを作成し、</li>
+<li>そのActionをDispatch (発行) し、</li>
+<li>Storeに保存しているStateを変更し、</li>
+<li>Stateの変更をView (UI) に反映させる、という流れをとる.</li>
+</ol>
+</li>
+<li>Viewを変更するために必ずActionを発行することになり、データフローが一方向になることで複雑なアプリケーションでも保守がしやすくなる.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>Reduxの特徴<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Reactと組み合わせることが多いが、Angularとも組み合わせて使える.</li>
+<li>上述のFlux構成要素に、Storeに保存しているStateを変更するための関数Reducerが加わる.</li>
+</ul>
+<div><svg height="200" viewBox="0 0 784 200" width="784" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(243,152,0)" height="140" style="filter:url(#filter_blur)" width="152" x="544" y="30" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="103" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="331" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="559" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="559" y="126" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="100" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="34" x="164.0" y="68">View</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="328" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="52" x="392.0" y="68">Action</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="556" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="620.5" y="68">Store</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="556" y="120" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="16" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="620.5" y="148">State</text>
+  <path d="M 228 60 L 320 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="327,60 320,56 320,64 327,60" stroke="rgb(0,0,0)" />
+  <path d="M 456 60 L 548 60" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="555,60 548,56 548,64 555,60" stroke="rgb(0,0,0)" />
+  <path d="M 684 60 L 709 60" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 709 60 L 709 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 164 25 L 709 25" fill="none" stroke="rgb(0,0,0)" />
+  <path d="M 164 25 L 164 32" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="164,39 160,32 168,32 164,39" stroke="rgb(0,0,0)" />
+  <path d="M 620 88 L 620 112" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="620,81 616,88 624,88 620,81" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="620,119 616,112 624,112 620,119" stroke="rgb(0,0,0)" />
+  <rect fill="white" height="14" stroke="rgb(0,0,0)" width="59" x="477" y="38" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="10" font-style="normal" font-weight="normal" text-anchor="middle" textLength="43" x="506.5" y="50">Dispatch</text>
+  <rect fill="white" height="14" stroke="rgb(0,0,0)" width="54" x="650" y="103" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="10" font-style="normal" font-weight="normal" text-anchor="middle" textLength="38" x="677.0" y="115">Reducer</text>
+</svg>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="react_redux_clock.html" class="btn btn-neutral float-right" title="React-Reduxによる時計アプリ作成" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="react_clock.html" class="btn btn-neutral" title="Reactによる時計アプリ作成" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, kei3238.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'jp',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>
