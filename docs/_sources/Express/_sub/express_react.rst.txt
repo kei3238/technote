@@ -24,7 +24,7 @@ ExpressとReactの連携
 APIサーバ
 ============================================================
 
-1. Project initialization
+1. Project初期化
 
 プロジェクトを作成.
 
@@ -228,4 +228,4 @@ Express用ディレクトリのindex.jsを以下のように編集
   cd react_view
   npm start
 
-4. http://localhost:3000 にアクセスして"Hello, API server!"と表示されることを確認.
+4. http://localhost:3001 にアクセスして"Hello, API server!"と表示されることを確認.
