@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="jp" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="jp" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Express quick start &mdash; Kei&#39;s Tech Note  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ExpressとReactの連携" href="express_react.html" />
+    <link rel="prev" title="Expressについて" href="about_express.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Kei's Tech Note
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Profile/Profile.html">Prfofile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Python/Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../React/React.html">React</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Express.html">Express</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="about_express.html">Expressについて</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Express quick start</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#express">Expressの導入</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Express quick start</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="express_react.html">ExpressとReactの連携</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vim/Vim.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/Git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Sphinx/Sphinx.html">Sphinx</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kei's Tech Note</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../Express.html">Express</a> &raquo;</li>
+        
+      <li>Express quick start</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Express/_sub/express_sample.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="express-quick-start">
+<h1>Express quick start<a class="headerlink" href="#express-quick-start" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="express">
+<h2>Expressの導入<a class="headerlink" href="#express" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Project initialization</li>
+</ol>
+<p>以下でプロジェクトを作成. とりあえず試すだけなら全てデフォルト回答でOK.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ npm init
+
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See <span class="sb">`</span>npm <span class="nb">help</span> json<span class="sb">`</span> <span class="k">for</span> definitive documentation on these fields
+and exactly what they <span class="k">do</span>.
+
+Use <span class="sb">`</span>npm install &lt;pkg&gt;<span class="sb">`</span> afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any <span class="nb">time</span> to quit.
+package name: <span class="o">(</span>sample<span class="o">)</span>
+version: <span class="o">(</span><span class="m">1</span>.0.0<span class="o">)</span>
+description:
+entry point: <span class="o">(</span>index.js<span class="o">)</span>
+<span class="nb">test</span> command:
+git repository:
+keywords:
+author:
+license: <span class="o">(</span>ISC<span class="o">)</span>
+About to write to /path/to/wd/sample/package.json:
+
+<span class="o">{</span>
+  <span class="s2">&quot;name&quot;</span>: <span class="s2">&quot;02_simplesample02&quot;</span>,
+  <span class="s2">&quot;version&quot;</span>: <span class="s2">&quot;1.0.0&quot;</span>,
+  <span class="s2">&quot;description&quot;</span>: <span class="s2">&quot;&quot;</span>,
+  <span class="s2">&quot;main&quot;</span>: <span class="s2">&quot;index.js&quot;</span>,
+  <span class="s2">&quot;scripts&quot;</span>: <span class="o">{</span>
+    <span class="s2">&quot;test&quot;</span>: <span class="s2">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>
+  <span class="o">}</span>,
+  <span class="s2">&quot;author&quot;</span>: <span class="s2">&quot;&quot;</span>,
+  <span class="s2">&quot;license&quot;</span>: <span class="s2">&quot;ISC&quot;</span>
+<span class="o">}</span>
+
+
+Is this ok? <span class="o">(</span>yes<span class="o">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>expressのインストール</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save express
+</pre></div>
+</div>
+</div>
+<div class="section" id="id1">
+<h2>Express quick start<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple" start="2">
+<li>エントリーポイントになるjsファイルを作成</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch index.js
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>index.jsを以下のように編集</li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">();</span>
+
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">next</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Hello express!&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="s1">&#39;3000&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>Expressを起動</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node index.js
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li>適当なブラウザで <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> にアクセスして&quot;Hello express!&quot;と表示されることを確認.</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="express_react.html" class="btn btn-neutral float-right" title="ExpressとReactの連携" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="about_express.html" class="btn btn-neutral" title="Expressについて" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, kei3238.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'jp',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

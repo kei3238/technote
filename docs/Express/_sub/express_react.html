@@ -1,0 +1,492 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="jp" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="jp" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ExpressとReactの連携 &mdash; Kei&#39;s Tech Note  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Vim" href="../../Vim/Vim.html" />
+    <link rel="prev" title="Express quick start" href="express_sample.html" /> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Kei's Tech Note
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../Profile/Profile.html">Prfofile</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Python/Python.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../React/React.html">React</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../Express.html">Express</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="about_express.html">Expressについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="express_sample.html">Express quick start</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ExpressとReactの連携</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">構成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api">APIサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#web">Webサーバ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#webapi">WebサーバからAPIサーバにアクセスする</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../Vim/Vim.html">Vim</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/Git.html">Git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Sphinx/Sphinx.html">Sphinx</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Kei's Tech Note</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../Express.html">Express</a> &raquo;</li>
+        
+      <li>ExpressとReactの連携</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/Express/_sub/express_react.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="expressreact">
+<h1>ExpressとReactの連携<a class="headerlink" href="#expressreact" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>構成<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Expressをバックエンド、Reactをフロントエンドに使う.</li>
+<li>ExpressとReactでサーバを分け、それぞれAPIサーバとWebサーバとして運用する.</li>
+<li>APIサーバとWebサーバを分離する理由については <a class="reference external" href="https://ja.stackoverflow.com/questions/18417/webサーバーとapサーバの分離について/18449">StackOverFlow</a> で議論されている.</li>
+</ul>
+<div><svg height="404" viewBox="0 0 640 404" width="640" xmlns="http://www.w3.org/2000/svg" xmlns:inkspace="http://www.inkscape.org/namespaces/inkscape" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs id="defs_block">
+    <filter height="1.504" id="filter_blur" inkspace:collect="always" width="1.1575" x="-0.07875" y="-0.252">
+      <feGaussianBlur id="feGaussianBlur3780" inkspace:collect="always" stdDeviation="4.2" />
+    </filter>
+  </defs>
+  <title>blockdiag</title>
+  <desc />
+  <rect fill="rgb(0,0,0)" height="241" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="127" y="141" />
+  <rect fill="rgb(0,0,0)" height="195" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="319" y="141" />
+  <rect fill="rgb(0,0,0)" height="65" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="8" x="511" y="206" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="67" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="259" y="46" />
+  <rect fill="rgb(0,0,0)" height="40" stroke="rgb(0,0,0)" style="filter:url(#filter_blur);opacity:0.7;fill-opacity:1" width="128" x="451" y="46" />
+  <path d="M 128 80 L 128 392" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="241" stroke="rgb(0,0,0)" width="8" x="124" y="135" />
+  <path d="M 320 80 L 320 392" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="195" stroke="rgb(0,0,0)" width="8" x="316" y="135" />
+  <path d="M 512 80 L 512 392" fill="none" stroke="rgb(0,0,0)" stroke-dasharray="8 4" />
+  <rect fill="moccasin" height="65" stroke="rgb(0,0,0)" width="8" x="508" y="200" />
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="64" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="42" x="128.0" y="66">Browser</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="256" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="60" x="320.0" y="66">Web-server</text>
+  <rect fill="rgb(255,255,255)" height="40" stroke="rgb(0,0,0)" width="128" x="448" y="40" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="60" x="512.0" y="66">API-server</text>
+  <path d="M 136 135 L 312 135" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="304,131 312,135 304,139" stroke="rgb(0,0,0)" />
+  <path d="M 328 200 L 504 200" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="496,196 504,200 496,204" stroke="rgb(0,0,0)" />
+  <path d="M 328 265 L 504 265" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="336,261 328,265 336,269" stroke="rgb(0,0,0)" />
+  <path d="M 136 330 L 312 330" fill="none" stroke="rgb(0,0,0)" />
+  <polygon fill="rgb(0,0,0)" points="144,326 136,330 144,334" stroke="rgb(0,0,0)" />
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="36" x="158.0" y="133">ACCESS</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="18" x="341.0" y="198">GET</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="24" x="492.0" y="263">JSON</text>
+  <text fill="rgb(0,0,0)" font-family="sans-serif" font-size="11" font-style="normal" font-weight="normal" text-anchor="middle" textLength="24" x="300.0" y="328">VIEW</text>
+</svg>
+</div>
+</div>
+<div class="section" id="api">
+<h2>APIサーバ<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Project initialization</li>
+</ol>
+<p>プロジェクトを作成.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm init
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>expressのインストール</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save express
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>エントリーポイントになるjsファイルを作成</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch index.js
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li>index.jsを以下のように編集</li>
+</ol>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+
+
+<span class="c1">// return message as json</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/v1/&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Hello, API server!&quot;</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="s1">&#39;3000&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="web">
+<h2>Webサーバ<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>create-react-app</li>
+</ol>
+<p>今回はExpress用のディレクトリ直下にReact用ディレクトリを作成.</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="nx">create</span><span class="o">-</span><span class="nx">react</span><span class="o">-</span><span class="nx">app</span> <span class="nx">react_view</span>
+</pre></div>
+</div>
+<p>ディレクトの構造は以下のようになっている.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>.
+├── index.js
+├── node_modules
+├── package-lock.json
+├── package.json
+└── react_view
+  ├── README.md
+  ├── node_modules
+  ├── package-lock.json
+  ├── package.json
+  ├── public
+  └── src
+    ├── App.css
+    ├── App.js
+    ├── App.test.js
+    ├── index.css
+    ├── index.js
+    ├── logo.svg
+    └── registerServiceWorker.js
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li>React用ディレクトリでaxiosを導入</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> react_view
+npm install --save axios
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>React用ディレクトリのApp.jsを以下のように編集</li>
+</ol>
+<div class="highlight-jsx notranslate"><div class="highlight"><pre><span></span><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">Component</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kr">import</span> <span class="nx">axios</span> <span class="nx">from</span> <span class="s1">&#39;axios&#39;</span><span class="p">;</span>
+
+<span class="kr">class</span> <span class="nx">App</span> <span class="kr">extends</span> <span class="nx">Component</span> <span class="p">{</span>
+  <span class="nx">constructor</span><span class="p">(</span><span class="nx">props</span><span class="p">){</span>
+    <span class="kr">super</span><span class="p">(</span><span class="nx">props</span><span class="p">);</span>
+    <span class="c1">// initial state</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">state</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="p">};</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getData</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">getData</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="nx">getData</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">axios</span>
+      <span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;http://localhost:3000/api/v1/&#39;</span><span class="p">)</span>
+
+      <span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">results</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="kr">const</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="nx">message</span><span class="o">:</span> <span class="nx">results</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">message</span>
+        <span class="p">};</span>
+        <span class="c1">//return data;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+          <span class="p">...</span><span class="nx">data</span>
+        <span class="p">});</span>
+      <span class="p">})</span>
+
+      <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">setState</span><span class="p">({</span>
+          <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;Can not connect to the API server...&#39;</span>
+        <span class="p">});</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+
+  <span class="nx">componentDidMount</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">getData</span><span class="p">();</span>
+  <span class="p">}</span>
+
+  <span class="nx">render</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>
+        <span class="p">{</span><span class="k">this</span><span class="p">.</span><span class="nx">state</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span>
+      <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">export</span> <span class="k">default</span> <span class="nx">App</span><span class="p">;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>Webサーバは3001ポートで待ち受けるように設定 (APIサーバが3000ポートなので)</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>touch .env
+<span class="nb">echo</span> <span class="nv">PORT</span><span class="o">=</span><span class="m">3001</span> &gt; .env
+</pre></div>
+</div>
+</div>
+<div class="section" id="webapi">
+<h2>WebサーバからAPIサーバにアクセスする<a class="headerlink" href="#webapi" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>それぞれのサーバを立ち上げる (Express用ディレクトリから)</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node index.js<span class="p">&amp;</span>
+<span class="nb">cd</span> react_view
+npm start
+
+<span class="c1"># Webサーバはctrl+cで終了する.</span>
+<span class="c1"># APIサーバは ps でnode index.jsのプロセス番号を確認して</span>
+<span class="c1"># kill -9 プロセス番号 でプロセスを終了する.</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>Webサーバを立ち上げると自動でブラウザが立ち上がるが、APIサーバへの接続に失敗する.</li>
+<li>ブラウザのコンソールを確認すると &quot;Origin <a class="reference external" href="http://localhost:3001">http://localhost:3001</a> is not allowed
+by Access-Control-Allow-Origin&quot; というエラーが出ている.</li>
+<li>Cross-Origin Resource Sharing (CORS) が原因だが、これについては割愛.</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>CORSを許可するための設定を行う.</li>
+</ol>
+<p>Express用ディレクトリでcorsを導入.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm install --save cros
+</pre></div>
+</div>
+<p>Express用ディレクトリのindex.jsを以下のように編集</p>
+<div class="highlight-js notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;http&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">cors</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;cors&#39;</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+
+<span class="c1">// allow CORS for the following APIs.</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">use</span><span class="p">(</span><span class="nx">cors</span><span class="p">());</span>
+
+<span class="c1">// GET http://localhost:3000/api/v1/</span>
+<span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/api/v1/&#39;</span><span class="p">,</span><span class="kd">function</span><span class="p">(</span><span class="nx">req</span><span class="p">,</span><span class="nx">res</span><span class="p">){</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">json</span><span class="p">({</span>
+    <span class="nx">message</span><span class="o">:</span> <span class="s2">&quot;Hello, API server!&quot;</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+
+<span class="kd">var</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">app</span><span class="p">);</span>
+<span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="s1">&#39;3000&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li>それぞれのサーバを立ち上げる (Express用ディレクトリから)</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>node index.js<span class="p">&amp;</span>
+<span class="nb">cd</span> react_view
+npm start
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><a class="reference external" href="http://localhost:3000">http://localhost:3000</a> にアクセスして&quot;Hello, API server!&quot;と表示されることを確認.</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../Vim/Vim.html" class="btn btn-neutral float-right" title="Vim" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="express_sample.html" class="btn btn-neutral" title="Express quick start" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, kei3238.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            LANGUAGE:'jp',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          
+          SphinxRtdTheme.Navigation.enableSticky();
+          
+      });
+  </script> 
+
+</body>
+</html>

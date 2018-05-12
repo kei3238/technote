@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Vim &mdash; Kei&#39;s Tech Note  documentation</title>
+  <title>Express &mdash; Kei&#39;s Tech Note  documentation</title>
   
 
   
@@ -29,8 +29,8 @@
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Git" href="../Git/Git.html" />
-    <link rel="prev" title="ExpressとReactの連携" href="../Express/_sub/express_react.html" /> 
+    <link rel="next" title="Expressについて" href="_sub/about_express.html" />
+    <link rel="prev" title="Material UIで見た目を綺麗にする" href="../React/_sub/material_ui.html" /> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -83,14 +83,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../Profile/Profile.html">Prfofile</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Python/Python.html">Python</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../React/React.html">React</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../Express/Express.html">Express</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Vim</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#chanage-mode">Chanage mode</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cursor">Cursor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#editing">Editing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#delete">Delete</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Express</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="_sub/about_express.html">Expressについて</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_sub/express_sample.html">Express quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="_sub/express_react.html">ExpressとReactの連携</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../Vim/Vim.html">Vim</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Git/Git.html">Git</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Sphinx/Sphinx.html">Sphinx</a></li>
 </ul>
@@ -138,13 +137,13 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Vim</li>
+      <li>Express</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/Vim/Vim.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Express/Express.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -157,139 +156,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="vim">
-<h1>Vim<a class="headerlink" href="#vim" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="chanage-mode">
-<h2>Chanage mode<a class="headerlink" href="#chanage-mode" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<colgroup>
-<col width="30%" />
-<col width="22%" />
-<col width="48%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Operation</th>
-<th class="head">Command</th>
-<th class="head">Memo</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Insert mode</td>
-<td>i</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>Visual mode</td>
-<td>v</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>Visual mode</td>
-<td>V</td>
-<td>Select entire lines</td>
-</tr>
-<tr class="row-odd"><td>Visual mode</td>
-<td>ctrl+v</td>
-<td>Select columns</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="cursor">
-<h2>Cursor<a class="headerlink" href="#cursor" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<colgroup>
-<col width="42%" />
-<col width="23%" />
-<col width="35%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Operation</th>
-<th class="head">Command</th>
-<th class="head">Memo</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Jump to end of line</td>
-<td>$</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>Jump to head of line</td>
-<td>^</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>Jump to EOF</td>
-<td>G</td>
-<td>&#160;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="editing">
-<h2>Editing<a class="headerlink" href="#editing" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<colgroup>
-<col width="35%" />
-<col width="26%" />
-<col width="40%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Operation</th>
-<th class="head">Command</th>
-<th class="head">Memo</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Delete</td>
-<td>d</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>Delete line</td>
-<td>dd</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>Copy</td>
-<td>y</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>Copy line</td>
-<td>yy</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>Paste</td>
-<td>p</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-odd"><td>Undo</td>
-<td>u</td>
-<td>&#160;</td>
-</tr>
-<tr class="row-even"><td>Redo</td>
-<td>ctrl+r</td>
-<td>&#160;</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="delete">
-<h2>Delete<a class="headerlink" href="#delete" title="Permalink to this headline">¶</a></h2>
-<table border="1" class="docutils">
-<colgroup>
-<col width="35%" />
-<col width="26%" />
-<col width="40%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Operation</th>
-<th class="head">Command</th>
-<th class="head">Memo</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>a</td>
-<td>&#160;</td>
-<td>&#160;</td>
-</tr>
-</tbody>
-</table>
+  <div class="section" id="express">
+<h1>Express<a class="headerlink" href="#express" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_sub/about_express.html">Expressについて</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_sub/express_sample.html">Express quick start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_sub/express_react.html">ExpressとReactの連携</a></li>
+</ul>
 </div>
 </div>
 
@@ -301,10 +175,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../Git/Git.html" class="btn btn-neutral float-right" title="Git" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="_sub/about_express.html" class="btn btn-neutral float-right" title="Expressについて" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../Express/_sub/express_react.html" class="btn btn-neutral" title="ExpressとReactの連携" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../React/_sub/material_ui.html" class="btn btn-neutral" title="Material UIで見た目を綺麗にする" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

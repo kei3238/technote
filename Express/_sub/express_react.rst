@@ -1,0 +1,231 @@
+============================================================
+ExpressとReactの連携
+============================================================
+
+構成
+============================================================
+* Expressをバックエンド、Reactをフロントエンドに使う.
+* ExpressとReactでサーバを分け、それぞれAPIサーバとWebサーバとして運用する.
+* APIサーバとWebサーバを分離する理由については StackOverFlow_ で議論されている.
+
+.. _StackOverFlow: https://ja.stackoverflow.com/questions/18417/webサーバーとapサーバの分離について/18449
+
+.. seqdiag::
+
+    seqdiag {
+
+      Browser -> Web-server [label = "ACCESS"];
+      Web-server -> API-server [label = "GET"];
+      Web-server <- API-server [label = "JSON"];
+      Browser <- Web-server [label = "VIEW"];
+
+    }
+
+APIサーバ
+============================================================
+
+1. Project初期化
+
+プロジェクトを作成.
+
+.. code-block:: bash
+
+  npm init
+
+2. expressのインストール
+
+.. code-block:: bash
+
+  npm install --save express
+
+3. エントリーポイントになるjsファイルを作成
+
+.. code-block:: bash
+
+  touch index.js
+
+4. index.jsを以下のように編集
+
+.. code-block:: js
+
+  var http = require('http');
+  var express = require('express');
+
+  var app = express()
+
+
+  // return message as json
+  app.get('/api/v1/',function(req,res){
+    res.json({
+      message: "Hello, API server!"
+    });
+  });
+
+  var server = http.createServer(app);
+  server.listen('3000');
+
+
+Webサーバ
+============================================================
+
+1. create-react-app
+
+今回はExpress用のディレクトリ直下にReact用ディレクトリを作成.
+
+.. code-block:: js
+
+  create-react-app react_view
+
+ディレクトの構造は以下のようになっている.
+
+.. code-block:: bash
+
+  .
+  ├── index.js
+  ├── node_modules
+  ├── package-lock.json
+  ├── package.json
+  └── react_view
+    ├── README.md
+    ├── node_modules
+    ├── package-lock.json
+    ├── package.json
+    ├── public
+    └── src
+      ├── App.css
+      ├── App.js
+      ├── App.test.js
+      ├── index.css
+      ├── index.js
+      ├── logo.svg
+      └── registerServiceWorker.js
+
+2. React用ディレクトリでaxiosを導入
+
+.. code-block:: bash
+
+  cd react_view
+  npm install --save axios
+
+3. React用ディレクトリのApp.jsを以下のように編集
+
+.. code-block:: jsx
+
+  import React, { Component } from 'react';
+  import axios from 'axios';
+
+  class App extends Component {
+    constructor(props){
+      super(props);
+      // initial state
+      this.state = {
+        message: '',
+      };
+      this.getData = this.getData.bind(this);
+    }
+
+    getData() {
+      axios
+        .get('http://localhost:3000/api/v1/')
+
+        .then(results => {
+          const data = {
+            message: results.data.message
+          };
+          //return data;
+          console.log(data)
+          this.setState({
+            ...data
+          });
+        })
+
+        .catch((error) => {
+          this.setState({
+            message: 'Can not connect to the API server...'
+          });
+        });
+    }
+
+    componentDidMount() {
+      this.getData();
+    }
+
+    render() {
+      return (
+        <div>
+          {this.state.message}
+        </div>
+      );
+    }
+  }
+
+  export default App;
+
+3. Webサーバは3001ポートで待ち受けるように設定 (APIサーバが3000ポートなので)
+
+.. code-block:: bash
+
+  touch .env
+  echo PORT=3001 > .env
+
+
+WebサーバからAPIサーバにアクセスする
+============================================================
+
+1. それぞれのサーバを立ち上げる (Express用ディレクトリから)
+
+.. code-block:: bash
+
+  node index.js&
+  cd react_view
+  npm start
+
+  # Webサーバはctrl+cで終了する.
+  # APIサーバは ps でnode index.jsのプロセス番号を確認して
+  # kill -9 プロセス番号 でプロセスを終了する.
+
+* Webサーバを立ち上げると自動でブラウザが立ち上がるが、APIサーバへの接続に失敗する.
+* ブラウザのコンソールを確認すると "Origin http://localhost:3001 is not allowed
+  by Access-Control-Allow-Origin" というエラーが出ている.
+* Cross-Origin Resource Sharing (CORS) が原因だが、これについては割愛.
+
+2. CORSを許可するための設定を行う.
+
+Express用ディレクトリでcorsを導入.
+
+.. code-block:: bash
+
+  npm install --save cros
+
+Express用ディレクトリのindex.jsを以下のように編集
+
+.. code-block:: js
+
+  var http = require('http');
+  var express = require('express');
+  var cors = require('cors');
+
+  var app = express()
+
+  // allow CORS for the following APIs.
+  app.use(cors());
+
+  // GET http://localhost:3000/api/v1/
+  app.get('/api/v1/',function(req,res){
+    res.json({
+      message: "Hello, API server!"
+    });
+  });
+
+  var server = http.createServer(app);
+  server.listen('3000');
+
+3. それぞれのサーバを立ち上げる (Express用ディレクトリから)
+
+.. code-block:: bash
+
+  node index.js&
+  cd react_view
+  npm start
+
+4. http://localhost:3000 にアクセスして"Hello, API server!"と表示されることを確認.
