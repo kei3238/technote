@@ -228,4 +228,4 @@ Express用ディレクトリのindex.jsを以下のように編集
   cd react_view
   npm start
 
-4. http://localhost:3000 にアクセスして"Hello, API server!"と表示されることを確認.
+4. http://localhost:3001 にアクセスして"Hello, API server!"と表示されることを確認.
